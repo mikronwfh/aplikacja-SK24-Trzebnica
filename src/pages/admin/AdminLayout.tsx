@@ -1,5 +1,5 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { Users, BookOpen, Music2 } from "lucide-react";
+import { NavLink, Outlet } from "react-router-dom";
+import { Users, BookOpen, Music2, Gem, Shirt, FlameKindling, Award } from "lucide-react";
 
 const AdminLayout = () => {
   return (
@@ -12,6 +12,10 @@ const AdminLayout = () => {
         <Tab to="/admin/uzytkownicy" icon={<Users className="h-4 w-4" />}>Konta</Tab>
         <Tab to="/admin/prawo" icon={<BookOpen className="h-4 w-4" />}>Prawo</Tab>
         <Tab to="/admin/spiewnik" icon={<Music2 className="h-4 w-4" />}>Śpiewnik</Tab>
+        <Tab to="/admin/symbolika" icon={<Gem className="h-4 w-4" />}>Symbolika</Tab>
+        <Tab to="/admin/mundur" icon={<Shirt className="h-4 w-4" />}>Mundur</Tab>
+        <Tab to="/admin/znaki" icon={<FlameKindling className="h-4 w-4" />}>Znaki</Tab>
+        <Tab to="/admin/sprawnosci" icon={<Award className="h-4 w-4" />}>Sprawności</Tab>
       </nav>
       <Outlet />
     </div>

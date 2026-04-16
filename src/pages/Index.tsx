@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/skauci-logo.png";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Music2, Users } from "lucide-react";
+import { BookOpen, Music2, Users, Gem, Shirt, FlameKindling, Award } from "lucide-react";
+import { useAuth } from "@/lib/auth";
 
 const Index = () => {
+  const { user } = useAuth();
+
   return (
     <div>
       <section className="bg-gradient-to-b from-secondary to-background">
@@ -18,14 +21,20 @@ const Index = () => {
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg"><Link to="/prawo">Prawo Skautowe</Link></Button>
-            <Button asChild size="lg" variant="outline"><Link to="/logowanie">Zaloguj się</Link></Button>
+            {!user && (
+              <Button asChild size="lg" variant="outline"><Link to="/logowanie">Zaloguj się</Link></Button>
+            )}
           </div>
         </div>
       </section>
 
-      <section className="container py-10 grid gap-4 md:grid-cols-3">
+      <section className="container py-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
         <Card to="/prawo" color="blue" icon={<BookOpen />} title="Prawo Skautowe" desc="Fundament tożsamości — pełen tekst Prawa z komentarzem." />
-        <Card to="/spiewnik" color="green" icon={<Music2 />} title="Śpiewnik" desc="Piosenki ogniskowe, pielgrzymkowe i liturgiczne. Tryb pełnoekranowy." />
+        <Card to="/symbolika" color="yellow" icon={<Gem />} title="Symbolika" desc="Krzyż, lilijka, chusta — znaczenie i historia symboli SK." />
+        {user && <Card to="/mundur" color="red" icon={<Shirt />} title="Mundur" desc="Co, gdzie i jak się nosi. Elementy, oznaczenia, zasady." />}
+        {user && <Card to="/spiewnik" color="green" icon={<Music2 />} title="Śpiewnik" desc="Piosenki ogniskowe, pielgrzymkowe i liturgiczne. Tryb pełnoekranowy." />}
+        {user && <Card to="/znaki-patrolowe" color="green" icon={<FlameKindling />} title="Znaki patrolowe" desc="Galeria znaków z opisem i kontekstem użycia." />}
+        {user && <Card to="/sprawnosci" color="blue" icon={<Award />} title="Sprawności" desc="Katalog sprawności — wymagania i odznaki." />}
         <Card to="/o-nas" color="red" icon={<Users />} title="Kim jesteśmy" desc="Skauci Króla, Domowy Kościół, Ruch Światło-Życie." />
       </section>
     </div>
